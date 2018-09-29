@@ -1,0 +1,176 @@
+====> Arquivo: testFile.rchrd
+----------------------TOKENS-----------------------
+<valor> <tipo> <linha>
+<class> <Palavras resevada> <1>
+<RichardTestFile> <Identificador> <1>
+<{> <Delimitador> <1>
+<string> <Palavras resevada> <2>
+<;> <Delimitador> <2>
+<name> <Identificador> <2>
+<string> <Palavras resevada> <3>
+<;> <Delimitador> <3>
+<type> <Identificador> <3>
+<(> <Delimitador> <5>
+<RichardTestFile> <Identificador> <5>
+<string> <Palavras resevada> <5>
+<,> <Delimitador> <5>
+<name> <Identificador> <5>
+<string> <Palavras resevada> <5>
+<)> <Delimitador> <5>
+<type> <Identificador> <5>
+<{> <Delimitador> <5>
+<.> <Delimitador> <6>
+<this> <Identificador> <6>
+<name> <Identificador> <6>
+<=> <Operador relacional> <6>
+<;> <Delimitador> <6>
+<name> <Identificador> <6>
+<.> <Delimitador> <7>
+<this> <Identificador> <7>
+<type> <Identificador> <7>
+<=> <Operador relacional> <7>
+<;> <Delimitador> <7>
+<type> <Identificador> <7>
+<}> <Delimitador> <8>
+<string> <Palavras resevada> <10>
+<(> <Delimitador> <10>
+<getName> <Identificador> <10>
+<)> <Delimitador> <10>
+<{> <Delimitador> <10>
+<return> <Identificador> <11>
+<;> <Delimitador> <11>
+<name> <Identificador> <11>
+<}> <Delimitador> <12>
+<string> <Palavras resevada> <14>
+<(> <Delimitador> <14>
+<getType> <Identificador> <14>
+<)> <Delimitador> <14>
+<{> <Delimitador> <14>
+<return> <Identificador> <15>
+<;> <Delimitador> <15>
+<type> <Identificador> <15>
+<}> <Delimitador> <16>
+<int> <Palavras resevada> <18>
+<(> <Delimitador> <18>
+<doSomething> <Identificador> <18>
+<block> <Comentario de bloco> <18>
+<int> <Palavras resevada> <18>
+<)> <Delimitador> <18>
+<multiple> <Identificador> <18>
+<{> <Delimitador> <18>
+<Testing line comment> <Comentario de linha> <19>
+<return> <Identificador> <20>
+<multiple> <Identificador> <20>
+<*> <Operador aritmético> <20>
+<2> <Número> <20>
+<}> <Delimitador> <21>
+<Testing Block comments> <Comentario de bloco> <23>
+<void> <Identificador> <25>
+<(> <Delimitador> <25>
+<identifierMethod> <Identificador> <25>
+<)> <Delimitador> <25>
+<{> <Delimitador> <25>
+<float> <Palavras resevada> <26>
+<myLittleFloat> <Identificador> <26>
+<=> <Operador relacional> <26>
+<-23.453> <Número> <26>
+<*> <Operador aritmético> <27>
+<int> <Palavras resevada> <27>
+<;> <Delimitador> <27>
+<pointer> <Identificador> <27>
+<[> <Delimitador> <28>
+<pointer> <Identificador> <28>
+<2> <Número> <28>
+<=> <Operador relacional> <28>
+<(> <Delimitador> <28>
+<*> <Operador aritmético> <28>
+<myLittleFloat> <Identificador> <28>
+<(> <Delimitador> <28>
+<92> <Número> <28>
+<5> <Número> <28>
+<-> <Operador aritmético> <28>
+<)> <Delimitador> <28>
+<23> <Número> <28>
+<if> <Palavras resevada> <29>
+<[> <Delimitador> <29>
+<pointer> <Identificador> <29>
+<2> <Número> <29>
+<&> <Token mal formado> <29>
+<&> <Token mal formado> <29>
+<myLittleFloat> <Identificador> <29>
+<|> <Token mal formado> <29>
+<|> <Token mal formado> <29>
+<"> <Token mal formado> <29>
+<pineapple"> <Token mal formado> <29>
+<{> <Delimitador> <29>
+<.> <Delimitador> <30>
+<self> <Identificador> <30>
+<(> <Delimitador> <30>
+<method> <Identificador> <30>
+<[> <Delimitador> <30>
+<pointer> <Identificador> <30>
+<1> <Número> <30>
+<,> <Delimitador> <30>
+<[> <Delimitador> <30>
+<pointer> <Identificador> <30>
+<2> <Número> <30>
+<)> <Delimitador> <30>
+<;> <Delimitador> <30>
+<}> <Delimitador> <31>
+<else> <Palavras resevada> <31>
+<if> <Palavras resevada> <31>
+<2> <Número> <31>
+<>> <Operador relacional> <31>
+<=> <Operador relacional> <31>
+<4> <Número> <31>
+<and> <Identificador> <31>
+<true> <Palavras resevada> <31>
+<{> <Delimitador> <31>
+<.> <Delimitador> <32>
+<self> <Identificador> <32>
+<(> <Delimitador> <32>
+<doSomething> <Identificador> <32>
+<+> <Operador aritmético> <32>
+<myLittleFloat> <Identificador> <32>
+<+> <Operador aritmético> <32>
+<--> <Operador aritmético> <32>
+<;> <Delimitador> <32>
+<}> <Delimitador> <33>
+<else> <Palavras resevada> <33>
+<if> <Palavras resevada> <33>
+<!> <Operador lógico> <33>
+<!> <Operador lógico> <33>
+<!> <Operador lógico> <33>
+<!> <Operador lógico> <33>
+<pointer> <Identificador> <33>
+<{> <Delimitador> <33>
+<.> <Delimitador> <34>
+<self> <Identificador> <34>
+<(> <Delimitador> <34>
+<doSomething> <Identificador> <34>
+<myLittleFloat> <Identificador> <34>
+<23> <Número> <34>
+<+> <Operador aritmético> <34>
+<)> <Delimitador> <34>
+<;> <Delimitador> <34>
+<}> <Delimitador> <35>
+<}> <Delimitador> <36>
+<void> <Identificador> <38>
+<(> <Delimitador> <38>
+<testString> <Identificador> <38>
+<)> <Delimitador> <38>
+<{> <Delimitador> <38>
+<string> <Palavras resevada> <39>
+<hello> <Identificador> <39>
+<=> <Operador relacional> <39>
+<"> <Token mal formado> <39>
+<\"> <Token mal formado> <39>
+<\"> <Token mal formado> <39>
+<Hello> <Identificador> <39>
+<World\"> <Token mal formado> <39>
+<\"> <Token mal formado> <39>
+<"> <Token mal formado> <39>
+<;> <Delimitador> <39>
+<}> <Delimitador> <40>
+<}> <Delimitador> <41>
+

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilador.java.util;
+package compilador.util;
 
 import compilador.model.ArqToken;
 import compilador.model.Token;
@@ -29,7 +29,7 @@ public class ArqDAO {
             PrintWriter pw = new PrintWriter(arq);
             pw.println("====> Arquivo: " + at.getFile().getName());
             pw.println("----------------------TOKENS-----------------------");
-            pw.println("------ VALOR --------- TIPO ---------- LINHA ------");
+            pw.println("<valor> <tipo> <linha>");
             at.getTks().forEach((t) -> {
                 pw.println(t);
             });

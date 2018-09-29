@@ -1,0 +1,25 @@
+====> Arquivo: code 02.cd
+----------------------TOKENS-----------------------
+<valor> <tipo> <linha>
+<(> <Delimitador> <1>
+<main> <Identificador> <1>
+<)> <Delimitador> <1>
+<{> <Delimitador> <1>
+<(> <Delimitador> <3>
+<for> <Palavras resevada> <3>
+<int> <Palavras resevada> <3>
+<a> <Identificador> <3>
+<2> <Número> <3>
+<+> <Operador aritmético> <3>
+<-7> <Número> <3>
+<123> <Número> <3>
+<7> <Número> <3>
+<11.11111> <Número> <3>
+<7> <Número> <3>
+<1123.65> <Número> <3>
+<999> <Número> <3>
+<y9> <Identificador> <3>
+<You not will found "hash" here> <Comentario de linha> <3>
+<This contains a comment block> <Comentario de bloco> <5>
+<}> <Delimitador> <6>
+

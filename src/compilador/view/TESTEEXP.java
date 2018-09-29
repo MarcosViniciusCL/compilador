@@ -11,6 +11,6 @@ package compilador.view;
  */
 public class TESTEEXP {
     public static void main(String[] args){
-        System.out.println("/*String nome;	idade = 2009 - 2018;*/".matches("/\\*(.)*\\*/"));
+        System.out.println("||".matches("!|&&|\\|\\|"));
     } 
 }

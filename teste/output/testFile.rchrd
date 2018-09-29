@@ -1,0 +1,43 @@
+class RichardTestFile {
+    string name;
+    string type;
+
+    RichardTestFile(string name, string type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    string getName() {
+        return name;
+    }
+
+    string getType() {
+        return type;
+    }
+
+    int doSomething(/*block*/ int multiple) {
+        // Testing line comment
+        return multiple * 2;
+    }
+
+    /*
+        Testing Block comments
+    */
+
+    void identifierMethod() {
+        float myLittleFloat = -23.453;
+        int* pointer;
+        pointer[2] = (myLittleFloat*(92+5--))/23;
+        if pointer[2] && myLittleFloat || "pineapple" {
+            self.method(pointer[1],pointer[2]);
+        } else if 2 >=4 and true {
+            self.doSomething(myLittleFloat++--);
+        } else if !!!!pointer {
+            self.doSomething(myLittleFloat / 23++);
+        }
+    }
+
+    void testString() {
+        string hello = "\"\"Hello World\"\"";
+    }
+}

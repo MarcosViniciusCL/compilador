@@ -1,0 +1,8 @@
+====> Arquivo: teste.mv
+----------------------TOKENS-----------------------
+<valor> <tipo> <linha>
+<true> <Palavras resevada> <1>
+<&> <Token mal formado> <1>
+<&> <Token mal formado> <1>
+<false> <Palavras resevada> <1>
+

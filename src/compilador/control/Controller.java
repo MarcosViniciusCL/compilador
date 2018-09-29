@@ -5,7 +5,7 @@
  */
 package compilador.control;
 
-import compilador.java.util.ArqDAO;
+import compilador.util.ArqDAO;
 import compilador.model.ArqToken;
 import compilador.util.AnalisadorLexico;
 import java.io.File;

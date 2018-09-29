@@ -10,6 +10,7 @@ package compilador.model;
  * @author marcos
  */
 public class Token {
+
     private String valor;
     private String tipo;
     private String linha;
@@ -22,11 +23,8 @@ public class Token {
 
     @Override
     public String toString() {
-        return valor + "    " + tipo + "     " + linha;
+        return "<" + valor + "> <" + tipo + "> <" + linha + ">";
     }
-    
-    
-    
 
     public String getValor() {
         return valor;
@@ -51,7 +49,5 @@ public class Token {
     public void setLinha(String linha) {
         this.linha = linha;
     }
-    
-    
-    
+
 }
