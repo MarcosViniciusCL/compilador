@@ -37,13 +37,14 @@ public class AnalisadorLexico {
             char[] vetorLinha;
 
             while (l != null) {
-                if(indexLinha == 23){ // <--- REMOVER DEPOIS, USADO PARA DEBUG.
+                if (indexLinha == 23) { // <--- REMOVER DEPOIS, USADO PARA DEBUG.
                     System.err.println("");
                 }
                 vetorLinha = l.trim().toCharArray();
                 for (int i = 0; i < vetorLinha.length; i++) {
                     if (vetorLinha[i] == '\"') { // <-- Se cadeia de caractere
                         buffer.append("\"");
+                        i++;
                         while (vetorLinha[i] != '\"' || !eDelimitador(vetorLinha[i])) {
                             buffer.append(vetorLinha[i]);
                             i++;
@@ -51,20 +52,21 @@ public class AnalisadorLexico {
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
                     } else if (vetorLinha[i] == '/') {
-                        if (vetorLinha[i] == '/' && i+1 < vetorLinha.length && vetorLinha[i + 1] == '/') { //<-- Comentário de linha
+                        if (vetorLinha[i] == '/' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '/') { //<-- Comentário de linha
                             for (; i < vetorLinha.length; i++) {
                                 buffer.append(vetorLinha[i]);
                             }
                             verificarLexema(buffer.toString());
                             buffer = new StringBuilder();
-                        } else if (vetorLinha[i] == '/' && i+1 < vetorLinha.length && vetorLinha[i + 1] == '*') {  //<-- Comentário de bloco
+                        } else if (vetorLinha[i] == '/' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '*') {  //<-- Comentário de bloco
                             while (true) { //<-- Pecorre arquivo até achar */
-                                if (i <= vetorLinha.length && vetorLinha[i] == '*'&& i+1 < vetorLinha.length && vetorLinha[i + 1] == '/') {
+                                if (i <= vetorLinha.length && vetorLinha[i] == '*' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '/') {
                                     buffer.append(vetorLinha[i]);
                                     buffer.append(vetorLinha[i + 1]);
                                     if (i == vetorLinha.length) {
                                         i = -1;
                                         l = br.readLine();
+                                        indexLinha++;
                                         vetorLinha = l.trim().toCharArray();
                                     }
                                     break;
@@ -73,6 +75,7 @@ public class AnalisadorLexico {
                                 buffer.append(vetorLinha[i]);
                                 if (i == vetorLinha.length - 1) {
                                     l = br.readLine();
+                                    indexLinha++;
                                     if (l != null) {
                                         vetorLinha = l.trim().toCharArray();
                                     } else {
@@ -95,6 +98,7 @@ public class AnalisadorLexico {
                                 if (i == vetorLinha.length || eDelimitador(Arrays.asList('.'), vetorLinha[i])) {
                                     if (i == vetorLinha.length) {
                                         l = br.readLine();
+                                        indexLinha++;
                                         vetorLinha = l.toCharArray();
                                         i = -1;
                                     }
@@ -109,6 +113,7 @@ public class AnalisadorLexico {
                                     if (i == vetorLinha.length) {
                                         i = -1;
                                         l = br.readLine();
+                                        indexLinha++;
                                         vetorLinha = l.toCharArray();
                                     }
                                     break;
@@ -116,6 +121,14 @@ public class AnalisadorLexico {
                                 buffer.append(vetorLinha[i]);
                                 i++;
                             }
+                        }
+                        verificarLexema(buffer.toString());
+                        buffer = new StringBuilder();
+                    } else if ((vetorLinha[i]+"").matches("\\||\\&")) { // <-- Operadores Lógicos
+                        buffer.append(vetorLinha[i]);
+                        if(i+1 < vetorLinha.length){
+                            buffer.append(vetorLinha[i+1]);
+                            i++;
                         }
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
