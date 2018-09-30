@@ -1,8 +1,34 @@
 ====> Arquivo: testFile.rchrd
 ----------------------TOKENS-----------------------
 <valor> <tipo> <linha>
-<hello> <Identificador> <1>
-<=> <Operador relacional> <1>
-<"Hello World> <Token mal formado> <1>
-<;> <Delimitador> <1>
+<class> <Palavras resevada> <1>
+<{> <Delimitador> <1>
+<Pessoa> <Identificador> <1>
+<string> <Palavras resevada> <2>
+<nome> <Identificador> <2>
+<int> <Palavras resevada> <3>
+<idade> <Identificador> <3>
+<(> <Delimitador> <5>
+<setIdade> <Identificador> <5>
+<int> <Palavras resevada> <5>
+<)> <Delimitador> <5>
+<id> <Identificador> <5>
+<{> <Delimitador> <5>
+<idade> <Identificador> <6>
+<=> <Operador relacional> <6>
+<id> <Identificador> <6>
+<+> <Operador aritmético> <6>
+<t5> <Identificador> <6>
+<}> <Delimitador> <7>
+<(> <Delimitador> <9>
+<addIdade> <Identificador> <9>
+<)> <Delimitador> <9>
+<{> <Delimitador> <9>
+<idade> <Identificador> <10>
+<++> <Operador aritmético> <10>
+<;> <Delimitador> <10>
+<}> <Delimitador> <11>
+<}> <Delimitador> <12>
 
+
+ANALISE LEXICAS FINALIZADA COM SUCESSO

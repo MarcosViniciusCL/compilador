@@ -24,10 +24,12 @@ import java.util.logging.Logger;
 public class AnalisadorLexico {
 
     private static AnalisadorLexico instance;
-    private List<Token> tokens = new ArrayList<>();
+    private List<Token> tokens;
     private int indexLinha = 1;
 
     public List<Token> iniciarAnalise(File arq) {
+        tokens = new ArrayList<>();
+        indexLinha = 1;
         String l = "";
         try {
             StringBuilder buffer = new StringBuilder();
@@ -37,7 +39,7 @@ public class AnalisadorLexico {
             char[] vetorLinha;
 
             while (l != null) {
-                if (indexLinha == 23) { // <--- REMOVER DEPOIS, USADO PARA DEBUG.
+                if (indexLinha == 10) { // <--- REMOVER DEPOIS, USADO PARA DEBUG.
                     System.err.println("");
                 }
                 vetorLinha = l.trim().toCharArray();
@@ -45,13 +47,16 @@ public class AnalisadorLexico {
                     if (vetorLinha[i] == '\"') { // <-- Se cadeia de caractere
                         buffer.append("\"");
                         i++;
-                        while (vetorLinha[i] != '\"' || !eDelimitador(vetorLinha[i])) {
+                        while (true) {
                             buffer.append(vetorLinha[i]);
+                            if (vetorLinha[i] == '\"' || eDelimitador(Arrays.asList(' '), vetorLinha[i])) {
+                                break;
+                            }
                             i++;
                         }
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
-                    } else if (vetorLinha[i] == '/') {
+                    } else if (vetorLinha[i] == '/') { // <-- Se comentário
                         if (vetorLinha[i] == '/' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '/') { //<-- Comentário de linha
                             for (; i < vetorLinha.length; i++) {
                                 buffer.append(vetorLinha[i]);
@@ -59,31 +64,37 @@ public class AnalisadorLexico {
                             verificarLexema(buffer.toString());
                             buffer = new StringBuilder();
                         } else if (vetorLinha[i] == '/' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '*') {  //<-- Comentário de bloco
-                            while (true) { //<-- Pecorre arquivo até achar */
-                                if (i <= vetorLinha.length && vetorLinha[i] == '*' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '/') {
-                                    buffer.append(vetorLinha[i]);
-                                    buffer.append(vetorLinha[i + 1]);
-                                    if (i == vetorLinha.length) {
-                                        i = -1;
-                                        l = br.readLine();
-                                        indexLinha++;
-                                        vetorLinha = l.trim().toCharArray();
-                                    }
-                                    break;
-                                }
-
-                                buffer.append(vetorLinha[i]);
-                                if (i == vetorLinha.length - 1) {
-                                    l = br.readLine();
-                                    indexLinha++;
-                                    if (l != null) {
-                                        vetorLinha = l.trim().toCharArray();
-                                    } else {
+                            while (true) { // <-- Pecorre arquivo até achar */
+                                if (0 != vetorLinha.length) {
+                                    if (i <= vetorLinha.length && vetorLinha[i] == '*' && i + 1 < vetorLinha.length && vetorLinha[i + 1] == '/') {
+                                        buffer.append(vetorLinha[i]);
+                                        buffer.append(vetorLinha[i + 1]);
+                                        if (i == vetorLinha.length) {
+                                            i = -1;
+                                            l = br.readLine();
+                                            indexLinha++;
+                                            vetorLinha = l.trim().toCharArray();
+                                        }
                                         break;
                                     }
-                                    i = 0;
+
+                                    buffer.append(vetorLinha[i]);
+                                    if (i == vetorLinha.length - 1) {
+                                        l = br.readLine();
+                                        indexLinha++;
+                                        if (l != null) {
+                                            vetorLinha = l.trim().toCharArray();
+                                        } else {
+                                            break;
+                                        }
+                                        i = 0;
+                                    } else {
+                                        i++;
+                                    }
                                 } else {
-                                    i++;
+                                    l = br.readLine();
+                                    indexLinha++;
+                                    vetorLinha = l.trim().toCharArray();
                                 }
                             }
                             String s = buffer.toString().replace("\t", "");
@@ -92,13 +103,16 @@ public class AnalisadorLexico {
                             buffer = new StringBuilder();
                         }
 
-                    } else if ((vetorLinha[i] + "").matches("-|\\d")) { // <-- Número
-                        if ((vetorLinha[i] + "").matches("\\d")) {
+                    } else if ((vetorLinha[i] + "").matches("-|\\d")) { // <-- Número ou operador '--'
+                        if ((vetorLinha[i] + "").matches("\\d")) { // <-- Se comece com digito
                             while (true) {
                                 if (i == vetorLinha.length || eDelimitador(Arrays.asList('.'), vetorLinha[i])) {
                                     if (i == vetorLinha.length) {
                                         l = br.readLine();
                                         indexLinha++;
+                                        if (l == null) {
+                                            break;
+                                        }
                                         vetorLinha = l.toCharArray();
                                         i = -1;
                                     }
@@ -107,14 +121,18 @@ public class AnalisadorLexico {
                                 buffer.append(vetorLinha[i]);
                                 i++;
                             }
-                        } else if ((vetorLinha[i] + "").matches("-")) {
+                        } else if ((vetorLinha[i] + "").matches("-")) { // <-- Se comeca com '-'
+                            verificarLexema(buffer.toString());
+                            buffer = new StringBuilder();
                             while (true) {
                                 if (i == vetorLinha.length || eDelimitador(Arrays.asList('-', ' '), vetorLinha[i])) {
                                     if (i == vetorLinha.length) {
-                                        i = -1;
                                         l = br.readLine();
                                         indexLinha++;
-                                        vetorLinha = l.toCharArray();
+                                        if (l != null) {
+                                            i = -1;
+                                            vetorLinha = l.toCharArray();
+                                        }
                                     }
                                     break;
                                 }
@@ -122,17 +140,56 @@ public class AnalisadorLexico {
                                 i++;
                             }
                         }
+                        /*if (buffer.length() > 2) {
+                            String temp = "";
+                            int j;
+                            for (j = 0; j < buffer.length(); j++) {
+                                if (eDelimitador(buffer.toString().toCharArray()[j])) {
+                                    verificarLexema(temp);
+                                    break;
+                                }
+                                temp += buffer.toString().toCharArray()[j];
+                            }
+                            verificarLexema(buffer.toString().replace(temp, ""));
+                            buffer = new StringBuilder();
+//                            l = br.readLine();
+//                            if(l == null) break;
+//                            vetorLinha = l.toCharArray();
+
+                        }*/
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
-                    } else if ((vetorLinha[i]+"").matches("\\||\\&")) { // <-- Operadores Lógicos
+                    } else if ((vetorLinha[i] + "").matches("\\+")) { // <-- Operadores aritméticos
+                        verificarLexema(buffer.toString());
+                        buffer = new StringBuilder();
+
                         buffer.append(vetorLinha[i]);
-                        if(i+1 < vetorLinha.length){
-                            buffer.append(vetorLinha[i+1]);
+                        if (i + 1 < vetorLinha.length && vetorLinha[i + 1] != ' ') {
+                            buffer.append(vetorLinha[i + 1]);
                             i++;
                         }
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
-                    } else if (eDelimitador(vetorLinha[i])) {
+                    } else if ((vetorLinha[i] + "").matches("\\||\\&")) { // <-- Operadores Lógicos
+                        buffer.append(vetorLinha[i]);
+                        if (i + 1 < vetorLinha.length) {
+                            buffer.append(vetorLinha[i + 1]);
+                            i++;
+                        }
+                        verificarLexema(buffer.toString());
+                        buffer = new StringBuilder();
+                    } else if ((vetorLinha[i] + "").matches("<|=|>|!")) {
+                        verificarLexema(buffer.toString());
+                        buffer = new StringBuilder();
+                        
+                        buffer.append(vetorLinha[i]);
+                        if (i + 1 < vetorLinha.length && vetorLinha[i + 1] != ' ') {
+                            buffer.append(vetorLinha[i + 1]);
+                            i++;
+                        }
+                        verificarLexema(buffer.toString());
+                        buffer = new StringBuilder();
+                    } else if (eDelimitador(Arrays.asList('+'), vetorLinha[i])) {
                         verificarLexema(vetorLinha[i] + ""); // <-- Verificando delimitador
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
@@ -151,10 +208,15 @@ public class AnalisadorLexico {
         }
         return tokens;
     }
+    
+    public void limparTudo(){
+        tokens.clear();
+    }
 
     private void verificarLexema(String bf) {
         if (!bf.isEmpty() && !bf.equals(" ")) {
-            if (bf.matches("class|final|if|else|for|scan|print|int|float|bool|true|false|string")) {
+            
+            if (bf.matches("class|const|variables|method|return|main|if|then|else|while|read|write|void|int|float|bool|string|true|false|extends")) {
                 tokens.add(new Token(bf, "Palavras resevada", indexLinha + ""));
             } else if (bf.matches("[a-zA-Z](\\w|_)*")) { // <-- Identificadores
                 tokens.add(new Token(bf, "Identificador", indexLinha + ""));
@@ -175,7 +237,9 @@ public class AnalisadorLexico {
             } else if (bf.matches("/\\*(.)*\\*/")) {
                 tokens.add(new Token(bf.replace("/*", "").replace("*/", ""), "Comentario de bloco", indexLinha + ""));
             } else {
-                tokens.add(new Token(bf, "Token mal formado", indexLinha + ""));
+                Token t = new Token(bf, "Expresão mal formada", indexLinha + "");
+                t.setErro(true);
+                tokens.add(t);
             }
         }
     }
