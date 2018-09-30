@@ -1,37 +1,10 @@
 ====> Arquivo: code 02.cd
 ----------------------TOKENS-----------------------
 <valor> <tipo> <linha>
-<(> <Delimitador> <1>
-<main> <Palavras resevada> <1>
-<)> <Delimitador> <1>
-<{> <Delimitador> <1>
-<(> <Delimitador> <3>
-<if> <Palavras resevada> <3>
-<a> <Identificador> <3>
-<==> <Operador relacional> <3>
-<true> <Palavras resevada> <3>
-<&&> <Operador lógico> <3>
-<b> <Identificador> <3>
-<!=> <Operador relacional> <3>
-<)> <Delimitador> <3>
-<true> <Palavras resevada> <3>
-<(> <Delimitador> <5>
-<for> <Identificador> <5>
-<int> <Palavras resevada> <5>
-<a> <Identificador> <5>
-<2> <Número> <5>
-<+> <Operador aritmético> <5>
-<-7> <Número> <6>
-<123> <Número> <6>
-<7> <Número> <7>
-<11.11111> <Número> <8>
-<7> <Número> <9>
-<1123.65> <Número> <10>
-<999> <Número> <10>
-<y9> <Identificador> <11>
-<You not will found "hash" here> <Comentario de linha> <11>
-<This contains a comment block> <Comentario de bloco> <15>
-<}> <Delimitador> <16>
+<main$&&> <Expresão mal formada> <1>
+<#Aa333> <Expresão mal formada> <2>
 
 
-ANALISE LEXICAS FINALIZADA COM SUCESSO
+ACONTECERAM ERROS:
+<main$&&> <Expresão mal formada> <1>
+<#Aa333> <Expresão mal formada> <2>

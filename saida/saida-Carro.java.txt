@@ -1,9 +1,0 @@
-====> Arquivo: Carro.java
-----------------------TOKENS-----------------------
------- VALOR --------- TIPO ---------- LINHA ------
-//Meu nome é marcos    Comentario de linha      1
-public    Identificador     2
-class    Palavras resevada     2
-Carro    Identificador     2
-/*String nome;idade = 2009 - 2018;*/    Comentario de bloco      3
-

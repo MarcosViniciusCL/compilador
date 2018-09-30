@@ -29,27 +29,33 @@ public class Controller {
         this.arquivos = new ArrayList<>();
     }
 
-    public void analisadorLexico(String caminho) {
-        File f = ArqDAO.lerArquivo(caminho);
-        if (f.isFile()) {
-            List l = aLexico.iniciarAnalise(f);
-            arquivos.add(new ArqToken(f, l));
-        } else {
-            List<File> b = Arrays.asList(f.listFiles());
-            b = b.stream().filter(it -> it.isFile()).collect(Collectors.toList());
-            b.forEach((a) -> {
-                arquivos.add(new ArqToken(a, aLexico.iniciarAnalise(a)));
-            });
-        }
-        salvarArquivo();
+    public void iniciarAnalise(String caminho) {
+        analisadorLexico(caminho); // <-- Verificação lexica
     }
-    
-    private void salvarArquivo(){
-        arquivos.forEach( it -> {
+
+    public void analisadorLexico(String caminho) {
+        if (caminho != null) {
+            File f = ArqDAO.lerArquivo(caminho);
+            if (f.isFile()) {
+                List l = aLexico.iniciarAnalise(f);
+                arquivos.add(new ArqToken(f, l));
+            } else {
+                List<File> b = Arrays.asList(f.listFiles());
+                b = b.stream().filter(it -> it.isFile()).collect(Collectors.toList());
+                b.forEach((a) -> {
+                    arquivos.add(new ArqToken(a, aLexico.iniciarAnalise(a)));
+                });
+            }
+            salvarArquivo();
+        }
+    }
+
+    private void salvarArquivo() {
+        arquivos.forEach(it -> {
             ArqDAO.escreverArquivo(it);
         });
     }
-    
+
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();

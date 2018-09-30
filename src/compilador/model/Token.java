@@ -22,6 +22,13 @@ public class Token {
         this.linha = linha;
         this.erro = false;
     }
+    
+    public Token(String valor, String tipo, String linha, boolean erro) {
+        this.valor = valor;
+        this.tipo = tipo;
+        this.linha = linha;
+        this.erro = erro;
+    }
 
     @Override
     public String toString() {

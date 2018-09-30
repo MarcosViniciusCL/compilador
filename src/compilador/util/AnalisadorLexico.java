@@ -27,6 +27,13 @@ public class AnalisadorLexico {
     private List<Token> tokens;
     private int indexLinha = 1;
 
+    /**
+     * Analisa o arquivo recebido via parâmetro
+     * buscando por lexemas e separando.
+     * 
+     * @param arq - Arquivo para leitura
+     * @return List - Lista de tokens identificados
+     */
     public List<Token> iniciarAnalise(File arq) {
         tokens = new ArrayList<>();
         indexLinha = 1;
@@ -140,23 +147,6 @@ public class AnalisadorLexico {
                                 i++;
                             }
                         }
-                        /*if (buffer.length() > 2) {
-                            String temp = "";
-                            int j;
-                            for (j = 0; j < buffer.length(); j++) {
-                                if (eDelimitador(buffer.toString().toCharArray()[j])) {
-                                    verificarLexema(temp);
-                                    break;
-                                }
-                                temp += buffer.toString().toCharArray()[j];
-                            }
-                            verificarLexema(buffer.toString().replace(temp, ""));
-                            buffer = new StringBuilder();
-//                            l = br.readLine();
-//                            if(l == null) break;
-//                            vetorLinha = l.toCharArray();
-
-                        }*/
                         verificarLexema(buffer.toString());
                         buffer = new StringBuilder();
                     } else if ((vetorLinha[i] + "").matches("\\+")) { // <-- Operadores aritméticos
@@ -203,15 +193,12 @@ public class AnalisadorLexico {
                 indexLinha++;
             }
         } catch (Exception ex) {
-            Logger.getLogger(AnalisadorLexico.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(l);
+            tokens.add(new Token("<ERRO GRAVE>", "EXCEPTION: " + ex, indexLinha + "", true));
+            return tokens;
         }
         return tokens;
     }
     
-    public void limparTudo(){
-        tokens.clear();
-    }
 
     private void verificarLexema(String bf) {
         if (!bf.isEmpty() && !bf.equals(" ")) {
